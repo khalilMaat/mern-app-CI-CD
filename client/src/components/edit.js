@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 
 export default function Edit() {
+    const REACT_APP_YOUR_HOSTNAME = 'http://localhost:5000';
     const [form, setForm] = useState({
         name: "",
         position: "",
@@ -13,7 +14,7 @@ export default function Edit() {
     useEffect(() => {
         async function fetchData() {
             const id = params.id
-            const response = await fetch(`${process.env.REACT_APP_YOUR_HOSTNAME}/record/${id}`)
+            const response = await fetch(`${REACT_APP_YOUR_HOSTNAME}/record/${id}`)
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`
                 window.alert(message)
@@ -45,7 +46,7 @@ export default function Edit() {
         e.preventDefault()
 
         const editedPerson = { ...form }
-        const response = await fetch(`${process.env.REACT_APP_YOUR_HOSTNAME}/update/${params.id}`, {
+        const response = await fetch(`${REACT_APP_YOUR_HOSTNAME}/update/${params.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

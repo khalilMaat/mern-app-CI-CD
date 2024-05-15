@@ -23,11 +23,12 @@ const Record = (props) => {
 }
 
 export default function RecordList() {
+    const REACT_APP_YOUR_HOSTNAME = 'http://localhost:5000';
     const [records, setRecords] = useState([])
 
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch(`${process.env.REACT_APP_YOUR_HOSTNAME}/record/`)
+            const response = await fetch(`${REACT_APP_YOUR_HOSTNAME}/record/`)
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`
@@ -50,7 +51,7 @@ export default function RecordList() {
             return
         }
 
-        await fetch(`${process.env.REACT_APP_YOUR_HOSTNAME}/${id}`, {
+        await fetch(`${REACT_APP_YOUR_HOSTNAME}/${id}`, {
             method: "DELETE"
         })
 
